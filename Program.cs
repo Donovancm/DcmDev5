@@ -28,6 +28,7 @@ namespace Week1
                 db.SaveChanges();
             }
         }
+        //Step 2
         static void ViewData()
         {
             using (var db = new MovieContext())
