@@ -1,0 +1,10 @@
+D:\Documents\School\Development_5\Week1\bin\Debug\netcoreapp2.0\Week1.deps.json
+D:\Documents\School\Development_5\Week1\bin\Debug\netcoreapp2.0\Week1.runtimeconfig.json
+D:\Documents\School\Development_5\Week1\bin\Debug\netcoreapp2.0\Week1.runtimeconfig.dev.json
+D:\Documents\School\Development_5\Week1\bin\Debug\netcoreapp2.0\Week1.dll
+D:\Documents\School\Development_5\Week1\bin\Debug\netcoreapp2.0\Week1.pdb
+D:\Documents\School\Development_5\Week1\obj\Debug\netcoreapp2.0\Week1.csproj.CoreCompileInputs.cache
+D:\Documents\School\Development_5\Week1\obj\Debug\netcoreapp2.0\Week1.AssemblyInfoInputs.cache
+D:\Documents\School\Development_5\Week1\obj\Debug\netcoreapp2.0\Week1.AssemblyInfo.cs
+D:\Documents\School\Development_5\Week1\obj\Debug\netcoreapp2.0\Week1.dll
+D:\Documents\School\Development_5\Week1\obj\Debug\netcoreapp2.0\Week1.pdb
