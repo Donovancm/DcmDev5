@@ -10,22 +10,24 @@ namespace Week1
         {
             Console.WriteLine("Hello World!");
             //InsertData();
-            ViewData();
+            //ViewData();
+            ModifyData();
         }
         static void InsertData()
         {
             using (var db = new MovieContext())
             {
-                Movie m = new Movie
+
+                Movie foundMovie = db.Movies.Find(0);
+                Console.WriteLine();
+                foundMovie.Title = "No country for old men";
+                int count = db.SaveChanges();
+                Console.WriteLine("{0} records has been changed", count);
+
+                foreach (var Movie in db.Movies)
                 {
-                    Title = "No country for old men",
-                    Actors = new System.Collections.Generic.List<Actor> {
-                        new Actor{Name = "Tommy Lee"},
-                        new Actor{Name = "Xavier Berdem"}
-                    }
-                };
-                db.Movies.Add(m);
-                db.SaveChanges();
+                    Console.WriteLine(" - {0} ", Movie.Title);
+                }
             }
         }
         //Step 3
@@ -40,6 +42,22 @@ namespace Week1
                     {
                         Console.WriteLine("Found actor with name" + actor.Name);
                     }
+                }
+            }
+        }
+        static void ModifyData()
+        {
+            using (var db = new MovieContext())
+            {
+                Movie foundMovie = db.Movies.Find(1);
+                Console.WriteLine("Found movie with title" + foundMovie.Title);
+                foundMovie.Title = "White cats, Black cats...";
+                db.SaveChanges();
+                Console.WriteLine("Title changed");
+
+                foreach(var Movie in db.Movies)
+                {
+                    Console.WriteLine(" - {0}", Movie.Title);
                 }
             }
         }

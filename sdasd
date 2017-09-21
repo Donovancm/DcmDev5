@@ -1,0 +1,80 @@
+[1mdiff --git a/Program.cs b/Program.cs[m
+[1mindex e42cdf6..9cf1588 100644[m
+[1m--- a/Program.cs[m
+[1m+++ b/Program.cs[m
+[36m@@ -10,22 +10,24 @@[m [mnamespace Week1[m
+         {[m
+             Console.WriteLine("Hello World!");[m
+             //InsertData();[m
+[31m-            ViewData();[m
+[32m+[m[32m            //ViewData();[m
+[32m+[m[32m            ModifyData();[m
+         }[m
+         static void InsertData()[m
+         {[m
+             using (var db = new MovieContext())[m
+             {[m
+[31m-                Movie m = new Movie[m
+[32m+[m
+[32m+[m[32m                Movie foundMovie = db.Movies.Find(0);[m
+[32m+[m[32m                Console.WriteLine();[m
+[32m+[m[32m                foundMovie.Title = "No country for old men";[m
+[32m+[m[32m                int count = db.SaveChanges();[m
+[32m+[m[32m                Console.WriteLine("{0} records has been changed", count);[m
+[32m+[m
+[32m+[m[32m                foreach (var Movie in db.Movies)[m
+                 {[m
+[31m-                    Title = "No country for old men",[m
+[31m-                    Actors = new System.Collections.Generic.List<Actor> {[m
+[31m-                        new Actor{Name = "Tommy Lee"},[m
+[31m-                        new Actor{Name = "Xavier Berdem"}[m
+[31m-                    }[m
+[31m-                };[m
+[31m-                db.Movies.Add(m);[m
+[31m-                db.SaveChanges();[m
+[32m+[m[32m                    Console.WriteLine(" - {0} ", Movie.Title);[m
+[32m+[m[32m                }[m
+             }[m
+         }[m
+         //Step 3[m
+[36m@@ -43,5 +45,21 @@[m [mnamespace Week1[m
+                 }[m
+             }[m
+         }[m
+[32m+[m[32m        static void ModifyData()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            using (var db = new MovieContext())[m
+[32m+[m[32m            {[m
+[32m+[m[32m                Movie foundMovie = db.Movies.Find(1);[m
+[32m+[m[32m                Console.WriteLine("Found movie with title" + foundMovie.Title);[m
+[32m+[m[32m                foundMovie.Title = "White cats, Black cats...";[m
+[32m+[m[32m                db.SaveChanges();[m
+[32m+[m[32m                Console.WriteLine("Title changed");[m
+[32m+[m
+[32m+[m[32m                foreach(var Movie in db.Movies)[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    Console.WriteLine(" - {0}", Movie.Title);[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+     }[m
+ }[m
+[1mdiff --git a/bin/Debug/netcoreapp2.0/Week1.dll b/bin/Debug/netcoreapp2.0/Week1.dll[m
+[1mindex b655898..953698d 100644[m
+Binary files a/bin/Debug/netcoreapp2.0/Week1.dll and b/bin/Debug/netcoreapp2.0/Week1.dll differ
+[1mdiff --git a/bin/Debug/netcoreapp2.0/Week1.pdb b/bin/Debug/netcoreapp2.0/Week1.pdb[m
+[1mindex 91413bc..bbfbd88 100644[m
+Binary files a/bin/Debug/netcoreapp2.0/Week1.pdb and b/bin/Debug/netcoreapp2.0/Week1.pdb differ
+[1mdiff --git a/obj/Debug/netcoreapp2.0/Week1.csproj.CoreCompileInputs.cache b/obj/Debug/netcoreapp2.0/Week1.csproj.CoreCompileInputs.cache[m
+[1mindex 32d06ad..1334a82 100644[m
+[1m--- a/obj/Debug/netcoreapp2.0/Week1.csproj.CoreCompileInputs.cache[m
+[1m+++ b/obj/Debug/netcoreapp2.0/Week1.csproj.CoreCompileInputs.cache[m
+[36m@@ -1 +1 @@[m
+[31m-6985dd0aaa7fb4ce8ac7c082e080d33b35422b38[m
+[32m+[m[32m6c56c8ca1040ff6955c18e008fa328fd8da17a9c[m
+[1mdiff --git a/obj/Debug/netcoreapp2.0/Week1.dll b/obj/Debug/netcoreapp2.0/Week1.dll[m
+[1mindex b655898..953698d 100644[m
+Binary files a/obj/Debug/netcoreapp2.0/Week1.dll and b/obj/Debug/netcoreapp2.0/Week1.dll differ
+[1mdiff --git a/obj/Debug/netcoreapp2.0/Week1.pdb b/obj/Debug/netcoreapp2.0/Week1.pdb[m
+[1mindex 91413bc..bbfbd88 100644[m
+Binary files a/obj/Debug/netcoreapp2.0/Week1.pdb and b/obj/Debug/netcoreapp2.0/Week1.pdb differ
