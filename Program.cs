@@ -15,7 +15,10 @@ namespace Week1
             //ModifyData();
             //Week 2
             //DataInsertion();
-            Projection();
+            //Projection();
+            //GroupingAggregation();
+            //Join();
+            SubQueryAggration();
         }
 
         static void DataInsertion()
@@ -63,6 +66,9 @@ namespace Week1
         {
             using ( var db = new MovieContext())
             {
+                //Projection
+                //
+
                 //var projected_movies = from m in db.Movies select new { m.Title, m.Release};
                 var projected_movies = from m in db.Movies select m;
                 Console.WriteLine("Movie title | Release");
@@ -84,13 +90,72 @@ namespace Week1
                 {
                     Console.WriteLine("- {0} | {1} ", movie.Title, movie.Release);
                 }
+
+            }
+        }
+        static void GroupingAggregation()
+        {
+            using (var db = new MovieContext())
+            {
+                /*var projected_movies4 = from a in db.Actors group a by a.Gender into genderGroup select genderGroup;
+                foreach (var movie in projected_movies4)
+                {
+                    Console.WriteLine("+ {0} ", movie.Key);
+                    foreach (var actor in movie)
+                    {
+                        Console.WriteLine("-- {0} ", actor.Name);
+                    }
+                }*/
+                var result = 
+                from m in db.Movies 
+                from actor in db.Actors where actor.MovieId == m.Id 
+                group actor by actor.Gender into GenderGroup 
+                select Tuple.Create(
+                    GenderGroup.Key, GenderGroup.Count()
+                );
+                Console.WriteLine("Gender | Number of actors");
+                foreach (var item in result)
+                {
+                    Console.WriteLine("{0} | {1} ", item.Item1, item.Item2);
+                }
             }
         }
         static void Join()
         {
             using ( var db = new MovieContext())
             {
-                
+                var projected_movies5 = 
+                from movie in db.Movies 
+                from actor in db.Actors where movie.Id == actor.Id select new {
+                    Title = movie.Title, ActorName = actor.Name
+                };
+                Console.WriteLine("Movie title and Actor name");
+                foreach (var movie in projected_movies5)
+                {
+                    Console.WriteLine("- {0} | {1} ", movie.Title, movie.ActorName);
+                }
+            }
+        }
+        static void SubQueryAggration()
+        {
+            using ( var db = new MovieContext())
+            { 
+                var projected_movies6 =
+                from movie in db.Movies let actors_of_movie =
+                (
+                    from actor in db.Actors where actor.MovieId == movie.Id select actor
+                )
+                where actors_of_movie.Count() < 3 
+                select new 
+                {
+                    Title = movie.Title,
+                    ActorsCount = actors_of_movie.Count()
+                };
+                Console.WriteLine(" Movies and actors");
+                foreach (var movie in projected_movies6)
+                {
+                    Console.WriteLine("{0} | {2} ", movie.Title, movie.ActorsCount );
+                }
             }
         }
 
