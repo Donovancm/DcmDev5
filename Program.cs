@@ -22,7 +22,7 @@ namespace Week1
         {
             using ( var db = new MovieContext())
             {
-                Movie m = new Movie 
+                /* Movie m = new Movie 
                 {
                     Title = "Divorce Italian Style",
                     Actors = new System.Collections.Generic.List<Actor>
@@ -40,11 +40,23 @@ namespace Week1
                         new Actor { Name = "Eva Moonstar", Birth = new DateTime(1985, 2, 12), Gender = "Female,"},
                         new Actor { Name = "Adamska Ghost", Birth = new DateTime(1995, 5, 13), Gender = "Male,"}
                     }
+                }; */
+                Movie m3 = new Movie
+                {
+                    Title = "Solid Snake ",
+                    Release = new DateTime(2005, 2, 1),
+                    Actors = new System.Collections.Generic.List<Actor>
+                    {
+                        new Actor { Name = "Jack Snake", Birth = new DateTime(1963, 8, 5), Gender = "Male,"},
+                        new Actor { Name = "Luna Snake", Birth = new DateTime(1990, 9, 19), Gender = "Female,"},
+                        new Actor { Name = "David Snake", Birth = new DateTime(1993, 5, 27), Gender = "Male,"}
+                    }
                 };
-                db.Add(m);
-                db.Add(m2);
+                //db.Add(m);
+                //db.Add(m2);
+                db.Add(m3);
                 db.SaveChanges();
-                Console.WriteLine("m" + "m2" + "has been added to the database");
+                Console.WriteLine("m" + "m2" + "m3" + "has been added to the database");
             }
         }
         static void Projection()
@@ -55,6 +67,20 @@ namespace Week1
                 var projected_movies = from m in db.Movies select m;
                 Console.WriteLine("Movie title | Release");
                 foreach (var movie in projected_movies)
+                {
+                    Console.WriteLine("- {0} | {1} ", movie.Title, movie.Release);
+                } 
+
+                var projected_movies2 = from m in db.Movies where m.Release > new DateTime(2000, 1, 1) select m;
+                Console.WriteLine("Movie title | Release from later then 2000");
+                foreach (var movie in projected_movies2)
+                {
+                    Console.WriteLine("- {0} | {1} ", movie.Title, movie.Release);
+                }
+
+                var projected_movies3 = from m in db.Movies where m.Release > new DateTime(2000, 1, 1) orderby m.Release descending select m;
+                Console.WriteLine("Movie title | Release sort by descending");
+                foreach (var movie in projected_movies3)
                 {
                     Console.WriteLine("- {0} | {1} ", movie.Title, movie.Release);
                 }
