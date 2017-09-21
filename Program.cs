@@ -9,10 +9,13 @@ namespace Week1
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            // Week 1
             //InsertData();
             //ViewData();
             //ModifyData();
-            DataInsertion();
+            //Week 2
+            //DataInsertion();
+            Projection();
         }
 
         static void DataInsertion()
@@ -48,7 +51,13 @@ namespace Week1
         {
             using ( var db = new MovieContext())
             {
-                
+                //var projected_movies = from m in db.Movies select new { m.Title, m.Release};
+                var projected_movies = from m in db.Movies select m;
+                Console.WriteLine("Movie title | Release");
+                foreach (var movie in projected_movies)
+                {
+                    Console.WriteLine("- {0} | {1} ", movie.Title, movie.Release);
+                }
             }
         }
         static void Join()
