@@ -11,8 +11,58 @@ namespace Week1
             Console.WriteLine("Hello World!");
             //InsertData();
             //ViewData();
-            ModifyData();
+            //ModifyData();
+            DataInsertion();
         }
+
+        static void DataInsertion()
+        {
+            using ( var db = new MovieContext())
+            {
+                Movie m = new Movie 
+                {
+                    Title = "Divorce Italian Style",
+                    Actors = new System.Collections.Generic.List<Actor>
+                    {
+                        new Actor { Name = "Marcello Mastroianni", Birth = new DateTime(1988, 8, 29), Gender = "Male,"},
+                        new Actor { Name = "Daniela Rocca", Birth = new DateTime(1986, 5, 1), Gender = "Female,"}                  
+                    }
+                };
+                Movie m2 = new Movie
+                {
+                    Title = "Freedom for All",
+                    Actors = new System.Collections.Generic.List<Actor>
+                    {
+                        new Actor { Name = "John Adams", Birth = new DateTime(1982, 3, 15), Gender = "Male,"},
+                        new Actor { Name = "Eva Moonstar", Birth = new DateTime(1985, 2, 12), Gender = "Female,"},
+                        new Actor { Name = "Adamska Ghost", Birth = new DateTime(1995, 5, 13), Gender = "Male,"}
+                    }
+                };
+                db.Add(m);
+                db.Add(m2);
+                db.SaveChanges();
+                Console.WriteLine("m" + "m2" + "has been added to the database");
+            }
+        }
+        static void Projection()
+        {
+            using ( var db = new MovieContext())
+            {
+                
+            }
+        }
+        static void Join()
+        {
+            using ( var db = new MovieContext())
+            {
+                
+            }
+        }
+
+
+
+
+//      Week 1 methods below
         static void InsertData()
         {
             using (var db = new MovieContext())
